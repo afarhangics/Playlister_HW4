@@ -16,6 +16,7 @@ const HomeScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
+        console.log("useEffect")
         store.loadIdNamePairs();
     }, []);
 
@@ -23,7 +24,7 @@ const HomeScreen = () => {
         store.createNewList();
     }
     let listCard = "";
-    if (store) {
+    if (store && store.idNamePairs.length > 0) {
         listCard = 
             <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
             {
