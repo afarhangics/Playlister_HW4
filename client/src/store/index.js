@@ -441,7 +441,6 @@ function GlobalStoreContextProvider(props) {
             }
             list.songs[end] = temp;
         }
-
         // NOW MAKE IT OFFICIAL
         store.updateCurrentList();
     }
