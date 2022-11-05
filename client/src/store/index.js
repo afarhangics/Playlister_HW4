@@ -26,6 +26,7 @@ export const GlobalStoreActionType = {
     CREATE_NEW_LIST: "CREATE_NEW_LIST",
     LOAD_ID_NAME_PAIRS: "LOAD_ID_NAME_PAIRS",
     MARK_LIST_FOR_DELETION: "MARK_LIST_FOR_DELETION",
+    UNMARK_LIST_FOR_DELETION: "UNMARK_LIST_FOR_DELETION",
     SET_CURRENT_LIST: "SET_CURRENT_LIST",
     SET_LIST_NAME_EDIT_ACTIVE: "SET_LIST_NAME_EDIT_ACTIVE",
     EDIT_SONG: "EDIT_SONG",
@@ -139,6 +140,20 @@ function GlobalStoreContextProvider(props) {
                     listNameActive: false,
                     listIdMarkedForDeletion: payload.id,
                     listMarkedForDeletion: payload.playlist
+                });
+            }
+            // PREPARE TO DELETE A LIST
+            case GlobalStoreActionType.UNMARK_LIST_FOR_DELETION: {
+                return setStore({
+                    currentModal : CurrentModal.NONE,
+                    idNamePairs: store.idNamePairs,
+                    currentList: null,
+                    currentSongIndex: -1,
+                    currentSong: null,
+                    newListCounter: store.newListCounter,
+                    listNameActive: false,
+                    listIdMarkedForDeletion: null,
+                    listMarkedForDeletion: null
                 });
             }
             // UPDATE A LIST
@@ -288,7 +303,7 @@ function GlobalStoreContextProvider(props) {
             const response = await api.getPlaylistPairs();
             if (response.data.success) {
                 let pairsArray = response.data.idNamePairs;
-                console.log({pairsArray})
+                console.log({pairsArray});
                 storeReducer({
                     type: GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
                     payload: pairsArray
@@ -318,12 +333,17 @@ function GlobalStoreContextProvider(props) {
         }
         getListToDelete(id);
     }
+    store.unmarkListForDeletion = function () {
+        storeReducer({
+            type: GlobalStoreActionType.UNMARK_LIST_FOR_DELETION,
+            payload: null
+        });
+    }
     store.deleteList = function (id) {
         async function processDelete(id) {
             let response = await api.deletePlaylistById(id);
-            if (response.data.success) {
+            if (response.status === 200) {
                 store.loadIdNamePairs();
-                history.push("/");
             }
         }
         processDelete(id);

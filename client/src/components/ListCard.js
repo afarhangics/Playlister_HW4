@@ -76,7 +76,6 @@ function ListCard(props) {
     let cardElement =
         <ListItem
             id={idNamePair._id}
-            key={idNamePair._id}
             sx={{ marginTop: '15px', display: 'flex', p: 1 }}
             style={{ width: '100%', fontSize: '30pt' }}
             button

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
 import MUIDeleteModal from './MUIDeleteModal'
@@ -14,30 +14,22 @@ import Typography from '@mui/material/Typography'
 */
 const HomeScreen = () => {
     const { store } = useContext(GlobalStoreContext);
+    const [namePairs, setNamePairs] = useState([])
 
     useEffect(() => {
         console.log("useEffect")
         store.loadIdNamePairs();
     }, []);
 
+    useEffect(() => {
+        setNamePairs(store.idNamePairs);
+        console.log('setNamePairs(store.idNamePairs);')
+    }, [store.idNamePairs]);
+
     function handleCreateNewList() {
         store.createNewList();
     }
-    let listCard = "";
-    if (store && store.idNamePairs.length > 0) {
-        listCard = 
-            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
-            {
-                store.idNamePairs.map((pair) => (
-                    <ListCard
-                        key={pair._id}
-                        idNamePair={pair}
-                        selected={false}
-                    />
-                ))
-            }
-            </List>;
-    }
+    
     return (
         <div id="playlist-selector">
             <div id="list-selector-heading">
@@ -52,9 +44,19 @@ const HomeScreen = () => {
                 <Typography variant="h2">Your Lists</Typography>
             </div>
             <div id="list-selector-list">
+                {namePairs.length > 0 ? 
+                <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
                 {
-                    listCard
+                    namePairs.map((pair) => (
+                        <ListCard
+                            key={pair._id}
+                            idNamePair={pair}
+                            selected={false}
+                        />
+                    ))
                 }
+                </List>
+                : ''}
                 <MUIDeleteModal />
             </div>
         </div>)
