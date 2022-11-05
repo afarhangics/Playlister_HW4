@@ -77,6 +77,8 @@ export default function AppBanner() {
         menu = loggedInMenu;
         if (store.currentList) {
             editToolbar = <EditToolbar />;
+        } else {
+            editToolbar = <div></div>; 
         }
     }
     

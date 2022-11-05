@@ -55,6 +55,7 @@ function GlobalStoreContextProvider(props) {
         currentSongIndex : -1,
         currentSong : null,
         newListCounter: 0,
+        isEdittingList: false,
         listNameActive: false,
         listIdMarkedForDeletion: null,
         listMarkedForDeletion: null
@@ -80,6 +81,7 @@ function GlobalStoreContextProvider(props) {
                     currentList: payload.playlist,
                     currentSongIndex: -1,
                     currentSong: null,
+                    isEdittingList: false,
                     newListCounter: store.newListCounter,
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
@@ -94,6 +96,7 @@ function GlobalStoreContextProvider(props) {
                     currentList: null,
                     currentSongIndex: -1,
                     currentSong: null,
+                    isEdittingList: false,
                     newListCounter: store.newListCounter,
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
@@ -108,6 +111,7 @@ function GlobalStoreContextProvider(props) {
                     currentList: payload,
                     currentSongIndex: -1,
                     currentSong: null,
+                    isEdittingList: false,
                     newListCounter: store.newListCounter + 1,
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
@@ -122,6 +126,7 @@ function GlobalStoreContextProvider(props) {
                     currentList: null,
                     currentSongIndex: -1,
                     currentSong: null,
+                    isEdittingList: false,
                     newListCounter: store.newListCounter,
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
@@ -136,6 +141,7 @@ function GlobalStoreContextProvider(props) {
                     currentList: null,
                     currentSongIndex: -1,
                     currentSong: null,
+                    isEdittingList: false,
                     newListCounter: store.newListCounter,
                     listNameActive: false,
                     listIdMarkedForDeletion: payload.id,
@@ -149,6 +155,7 @@ function GlobalStoreContextProvider(props) {
                     idNamePairs: store.idNamePairs,
                     currentList: null,
                     currentSongIndex: -1,
+                    isEdittingList: false,
                     currentSong: null,
                     newListCounter: store.newListCounter,
                     listNameActive: false,
@@ -162,6 +169,7 @@ function GlobalStoreContextProvider(props) {
                     currentModal : CurrentModal.NONE,
                     idNamePairs: store.idNamePairs,
                     currentList: payload,
+                    isEdittingList: false,
                     currentSongIndex: -1,
                     currentSong: null,
                     newListCounter: store.newListCounter,
@@ -177,6 +185,7 @@ function GlobalStoreContextProvider(props) {
                     idNamePairs: store.idNamePairs,
                     currentList: payload,
                     currentSongIndex: -1,
+                    isEdittingList: true,
                     currentSong: null,
                     newListCounter: store.newListCounter,
                     listNameActive: true,
@@ -193,6 +202,7 @@ function GlobalStoreContextProvider(props) {
                     currentSongIndex: payload.currentSongIndex,
                     currentSong: payload.currentSong,
                     newListCounter: store.newListCounter,
+                    isEdittingList: false,
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
                     listMarkedForDeletion: null
@@ -206,6 +216,7 @@ function GlobalStoreContextProvider(props) {
                     currentSongIndex: payload.currentSongIndex,
                     currentSong: payload.currentSong,
                     newListCounter: store.newListCounter,
+                    isEdittingList: false,
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
                     listMarkedForDeletion: null
@@ -217,6 +228,7 @@ function GlobalStoreContextProvider(props) {
                     idNamePairs: store.idNamePairs,
                     currentList: store.currentList,
                     currentSongIndex: -1,
+                    isEdittingList: false,
                     currentSong: null,
                     newListCounter: store.newListCounter,
                     listNameActive: false,
@@ -530,6 +542,9 @@ function GlobalStoreContextProvider(props) {
     }
     store.canClose = function() {
         return (store.currentList !== null);
+    }
+    store.shouldDisableAddList = function () {
+        return store.isEdittingList;
     }
 
     // THIS FUNCTION ENABLES THE PROCESS OF EDITING A LIST NAME

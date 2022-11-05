@@ -37,6 +37,7 @@ const HomeScreen = () => {
                 color="primary" 
                 aria-label="add"
                 id="add-list-button"
+                disabled={store.shouldDisableAddList()}
                 onClick={handleCreateNewList}
             >
                 <AddIcon />
