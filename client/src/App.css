@@ -94,6 +94,12 @@ body {
   cursor: not-allowed;
 }
 
+#playlist-selector{
+  position: absolute;
+  top: 20%;
+  width: 100%;
+}
+
 #top5-list-selector {
   position: absolute;
   left: 0%;

@@ -73,7 +73,7 @@ export default function AppBanner() {
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>        
 
-    let editToolbar = "";
+    let editToolbar = <div></div>;
     let menu = loggedOutMenu;
     if (auth.loggedIn) {
         menu = loggedInMenu;
@@ -106,6 +106,7 @@ export default function AppBanner() {
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
+                            style={{display: "block"}}
                             size="large"
                             edge="end"
                             aria-label="account of current user"
