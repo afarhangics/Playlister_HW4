@@ -38,7 +38,7 @@ export const registerUser = (firstName, lastName, email, password, passwordVerif
         email : email,
         password : password,
         passwordVerify : passwordVerify
-    })
+    });
 }
 const apis = {
     getLoggedIn,
