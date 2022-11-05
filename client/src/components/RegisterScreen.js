@@ -12,6 +12,9 @@ import Link from '@mui/material/Link';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function RegisterScreen() {
     const { auth } = useContext(AuthContext);
@@ -28,6 +31,10 @@ export default function RegisterScreen() {
             formData.get('passwordVerify')
         );
     };
+    const closeAlert = (event) =>{
+        event.preventDefault();
+        auth.unsetAuthError();
+    }
 
     return (
             <Container component="main" maxWidth="xs">
@@ -46,6 +53,21 @@ export default function RegisterScreen() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+                    {auth.authError ? 
+                       <Alert severity="error" action={
+                          <Button color="inherit" size="small" onClick={closeAlert}>
+                              <CloseIcon/>
+                          </Button>
+                        }>
+                            <AlertTitle>Error</AlertTitle>
+                            {auth.errorMessage}
+                        </Alert> : ''}
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>

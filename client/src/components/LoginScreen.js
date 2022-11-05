@@ -15,6 +15,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
@@ -26,8 +29,12 @@ export default function LoginScreen() {
             formData.get('email'),
             formData.get('password')
         );
-
     };
+
+    const closeAlert = (event) =>{
+        event.preventDefault();
+        auth.unsetAuthError();
+    }
 
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
@@ -62,6 +69,15 @@ export default function LoginScreen() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
+                    {auth.authError ? 
+                       <Alert severity="error" action={
+                          <Button color="inherit" size="small" onClick={closeAlert}>
+                              <CloseIcon/>
+                          </Button>
+                        }>
+                            <AlertTitle>Error</AlertTitle>
+                            {auth.errorMessage}
+                        </Alert> : ''}
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -87,6 +103,8 @@ export default function LoginScreen() {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
+                        
+
                         <Button
                             type="submit"
                             fullWidth
