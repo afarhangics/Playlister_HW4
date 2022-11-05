@@ -292,6 +292,12 @@ input {
   opacity: 1;
 }
 
+.css-1wnsr1i {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .modal-dialog {
   position: relative;
   max-width: 800px;

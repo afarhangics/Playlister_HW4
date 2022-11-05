@@ -49,7 +49,7 @@ export default function MUIEditSongModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
+            open={store.isEditSongModalOpen()}
         >
             <Box sx={style}>
             <div
@@ -58,10 +58,10 @@ export default function MUIEditSongModal() {
             data-animation="slideInOutLeft">
             <div
                 id='edit-song-root'
-                className="modal-root">
+                className="modal-dialog">
                 <div
                     id="edit-song-modal-header"
-                    className="modal-north">Edit Song</div>
+                    className="dialog-header">Edit Song</div>
                 <div
                     id="edit-song-modal-content"
                     className="modal-center">
@@ -70,21 +70,21 @@ export default function MUIEditSongModal() {
                         id="edit-song-modal-title-textfield" 
                         className='modal-textfield' 
                         type="text" 
-                        defaultValue={title} 
+                        value={title} 
                         onChange={handleUpdateTitle} />
                     <div id="artist-prompt" className="modal-prompt">Artist:</div>
                     <input 
                         id="edit-song-modal-artist-textfield" 
                         className='modal-textfield' 
                         type="text" 
-                        defaultValue={artist} 
+                        value={artist} 
                         onChange={handleUpdateArtist} />
                     <div id="you-tube-id-prompt" className="modal-prompt">You Tube Id:</div>
                     <input 
                         id="edit-song-modal-youTubeId-textfield" 
                         className='modal-textfield' 
                         type="text" 
-                        defaultValue={youTubeId} 
+                        value={youTubeId} 
                         onChange={handleUpdateYouTubeId} />
                 </div>
                 <div className="modal-south">
