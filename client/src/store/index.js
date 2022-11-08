@@ -532,16 +532,16 @@ function GlobalStoreContextProvider(props) {
         tps.doTransaction();
     }
     store.canAddNewSong = function() {
-        return (store.currentList !== null);
+        return (store.currentList !== null && !store.isRemoveSongModalOpen() && !store.isEditSongModalOpen());
     }
     store.canUndo = function() {
-        return ((store.currentList !== null) && tps.hasTransactionToUndo());
+        return ((store.currentList !== null) && tps.hasTransactionToUndo() && !store.isRemoveSongModalOpen() && !store.isEditSongModalOpen());
     }
     store.canRedo = function() {
-        return ((store.currentList !== null) && tps.hasTransactionToRedo());
+        return ((store.currentList !== null) && tps.hasTransactionToRedo() && !store.isRemoveSongModalOpen() && !store.isEditSongModalOpen());
     }
     store.canClose = function() {
-        return (store.currentList !== null);
+        return (store.currentList !== null && !store.isRemoveSongModalOpen() && !store.isEditSongModalOpen());
     }
     store.shouldDisableAddList = function () {
         return store.isEdittingList;

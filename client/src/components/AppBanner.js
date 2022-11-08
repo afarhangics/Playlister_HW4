@@ -11,6 +11,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 export default function AppBanner() {
     const { auth } = useContext(AuthContext);
@@ -21,6 +22,11 @@ export default function AppBanner() {
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const navHome = () => {
+        handleMenuClose();
+        store.closeCurrentList();
+    }
 
     const handleMenuClose = () => {
         setAnchorEl(null);
@@ -101,7 +107,8 @@ export default function AppBanner() {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}                        
                     >
-                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link>
+                        <Button style={{ textDecoration: 'none', fontSize: '36px', color: 'white' }} 
+                        onClick={navHome} variant="contained">⌂</Button>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

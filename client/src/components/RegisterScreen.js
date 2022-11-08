@@ -13,7 +13,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function RegisterScreen() {
@@ -37,38 +36,32 @@ export default function RegisterScreen() {
     }
 
     return (
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="sm" maxHeight="sm">
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 1,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <Avatar sx={{ m: 0, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-                    </Typography>
+                    
                     {auth.authError ? 
                        <Alert severity="error" action={
                           <Button color="inherit" size="small" onClick={closeAlert}>
                               <CloseIcon/>
                           </Button>
                         }>
-                            <AlertTitle>Error</AlertTitle>
                             {auth.errorMessage}
                         </Alert> : ''}
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -141,7 +134,7 @@ export default function RegisterScreen() {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
+                <Copyright sx={{ mt: 0 }} />
             </Container>
     );
 }

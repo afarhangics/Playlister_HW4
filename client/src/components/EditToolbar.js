@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { GlobalStoreContext } from '../store'
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -14,6 +14,20 @@ import CloseIcon from '@mui/icons-material/HighlightOff';
 */
 function EditToolbar() {
     const { store } = useContext(GlobalStoreContext);
+
+    const keydownHandler = (e) => {
+        if(e.key==='y' && e.ctrlKey && store.canRedo()) handleRedo();
+        if(e.key==='z' && e.ctrlKey && store.canUndo()) handleUndo();
+    };
+
+    // USE THIS USE EFFECT BOTH AS COMPONENTDIDMOUNT AND COMPONENTWILLUNMOUNT
+    useEffect(() => {
+        document.addEventListener('keydown', keydownHandler);
+        return () => {
+            document.removeEventListener('keydown', keydownHandler);
+          };
+    }, []);
+
 
     function handleAddNewSong() {
         store.addNewSong();

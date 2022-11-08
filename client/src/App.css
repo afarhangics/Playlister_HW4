@@ -61,7 +61,6 @@ body {
   border-width: 2px;
   border-style: solid;
   border-radius: 10px;
-  padding-left: 10%;
   padding-top: 5%;
   padding-bottom: 5%;
   height:70%;
@@ -98,6 +97,15 @@ body {
   position: absolute;
   top: 15%;
   width: 100%;
+}
+
+#playlister-statusbar {
+  height: 10%;
+  background-color: lightsalmon;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36pt;
 }
 
 #top5-list-selector {
@@ -149,10 +157,11 @@ body {
   float: left;
 }
 
+
 #list-selector-list {
   padding-top:70px;
   width: 100%;
-  min-height: 200px;
+  min-height: 400px;
   max-height: 90%;
   display: flex;
   flex-direction: column;
@@ -193,7 +202,8 @@ body {
 
 .list-card-button {
   float: right;
-  transform: scale(2);
+  transform: scale(1.2);
+  font-size: 16px;
 }
 
 #workspace-home,

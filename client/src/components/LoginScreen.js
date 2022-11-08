@@ -16,7 +16,6 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function LoginScreen() {
@@ -75,7 +74,6 @@ export default function LoginScreen() {
                               <CloseIcon/>
                           </Button>
                         }>
-                            <AlertTitle>Error</AlertTitle>
                             {auth.errorMessage}
                         </Alert> : ''}
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
